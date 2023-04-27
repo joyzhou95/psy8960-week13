@@ -12,6 +12,8 @@ conn <- dbConnect(MariaDB(),
                   port = 3306,
                   ssl.ca = 'mysql_hotel_umn_20220728_interm.cer')
 
+dbExecute(conn, "USE cla_tntlab;")
+
 week13_tbl <- dbGetQuery(conn, "SELECT *
                          FROM datascience_8960_table;")
 
