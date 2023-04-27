@@ -1,3 +1,19 @@
 # Script Settings and Resources
 setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
 library(tidyverse)
+library(keyring)
+library(RMariaDB)
+
+# Data Import and Cleaning
+conn <- dbConnect(MariaDB(),
+                  user = "zhou1559",
+                  password = key_get("latis_sql","zhou1559"),
+                  host = "mysql-prod5.oit.umn.edu",
+                  port = 3306,
+                  ssl.ca = 'mysql_hotel_umn_20220728_interm.cer')
+
+week13_tbl <- dbGetQuery(conn, "SELECT *
+                         FROM datascience_8960_table;")
+
+write_csv(week13_tbl, "../data/week13.csv") 
+
