@@ -17,3 +17,15 @@ week13_tbl <- dbGetQuery(conn, "SELECT *
 
 write_csv(week13_tbl, "../data/week13.csv") 
 
+# Analysis
+nrow(week13_tbl)
+
+n_distinct(week13_tbl$employee_id)
+
+week13_tbl %>%
+  filter(manager_hire == "N") %>%
+  count(city)
+  
+  
+  
+
