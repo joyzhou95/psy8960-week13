@@ -26,6 +26,18 @@ week13_tbl %>%
   filter(manager_hire == "N") %>%
   count(city)
   
+week13_tbl %>%
+  group_by(performance_group) %>%
+  summarize(mean_employ = mean(yrs_employed),
+            sd_employ = sd(yrs_employed))
+
+week13_tbl %>%
+  arrange(city, desc(test_score)) %>%
+  group_by(city) %>%
+  slice_max(test_score, n = 3) %>%
+  select(employee_id, city)
+  
+  
   
   
 
