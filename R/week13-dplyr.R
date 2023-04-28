@@ -10,7 +10,7 @@ conn <- dbConnect(MariaDB(),
                   password = key_get("latis_sql","zhou1559"),
                   host = "mysql-prod5.oit.umn.edu",
                   port = 3306,
-                  ssl.ca = 'mysql_hotel_umn_20220728_interm.cer')
+                  ssl.ca = '../mysql_hotel_umn_20220728_interm.cer')
 
 dbExecute(conn, "USE cla_tntlab;")
 

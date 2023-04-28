@@ -8,7 +8,7 @@ conn <- dbConnect(MariaDB(),
                   password = key_get("latis_sql","zhou1559"),
                   host = "mysql-prod5.oit.umn.edu",
                   port = 3306,
-                  ssl.ca = 'mysql_hotel_umn_20220728_interm.cer')
+                  ssl.ca = '../mysql_hotel_umn_20220728_interm.cer')
 
 dbExecute(conn, "USE cla_tntlab;")
 
@@ -34,12 +34,12 @@ dbGetQuery(conn, "SELECT
            FROM datascience_8960_table
            GROUP BY performance_group;")
 
-dbGetQuery(conn, "WITH psy8960_table_row_num AS (
+dbGetQuery(conn, "WITH psy8960_table_rank_num AS (
            SELECT *,
-           RANK() OVER(PARTITION BY city ORDER BY test_score DESC) AS row_num
+           RANK() OVER(PARTITION BY city ORDER BY test_score DESC) AS rank_num
            FROM datascience_8960_table
            )
            SELECT employee_id, city
-           FROM psy8960_table_row_num
-           WHERE row_num IN (1,2,3);")
+           FROM psy8960_table_rank_num
+           WHERE rank_num IN (1,2,3);")
 
