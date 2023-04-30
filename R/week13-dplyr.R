@@ -51,10 +51,10 @@ week13_tbl %>%
 week13_tbl %>%
   arrange(city, desc(test_score)) %>%
   group_by(city) %>%
-  slice_max(test_score, n = 3) %>%
+  filter(dense_rank(-test_score) %in% 1:3) %>%
   select(employee_id, city)
   
-  
+
   
   
 

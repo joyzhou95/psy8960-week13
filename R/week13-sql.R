@@ -52,7 +52,7 @@ dbGetQuery(conn, "SELECT
 ## From the new table, select the employee_id and location of those ranked within top 3 
 dbGetQuery(conn, "WITH psy8960_table_rank_num AS (
            SELECT *,
-           RANK() OVER(PARTITION BY city ORDER BY test_score DESC) AS rank_num
+           DENSE_RANK() OVER(PARTITION BY city ORDER BY test_score DESC) AS rank_num
            FROM datascience_8960_table
            )
            SELECT employee_id, city
